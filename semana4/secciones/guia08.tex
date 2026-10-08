@@ -1,0 +1,255 @@
+Definamos la siguiente función transferencia:
+
+\begin{equation}
+    G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_ns + \omega_n^2}
+\end{equation}
+
+
+\noindent Si $\omega_n = \SI{3}{rad/s}$, definiremos distintos factores de amortiguamiento para ver el comportamiento del sistema. En la Figura \ref{fig:2} se muestran las respuestas del sistema para factores de amortiguamiento iguales a $[3, 0.6, -0.4, -2]$.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+        \begin{groupplot}[group style = {group size = 2 by 2,
+            horizontal sep=1.8cm,
+            vertical sep=1.8cm},
+            width=7cm, height=6cm,
+            ylabel={$y(t)$},
+            grid = both,
+            trig format = rad,
+            ylabel style = {rotate = -0.46},
+            xmin = 0, xmax = 5,
+            ]
+            \nextgroupplot[title = {$\zeta = 3$}]
+            \addplot[domain = 0:5, samples = 200, very thick]{1 - 1.0303*exp(-0.5147*x) + 0.0303*exp(-17.4853*x)};
+
+            \nextgroupplot[title = {$\zeta = 0.6$}, ylabel = \empty]
+            \addplot[domain = 0:5, samples = 200, very thick]{1 - exp(-1.8*x)*(cos(2.4*x) + 0.75*sin(2.4*x))};
+
+            \nextgroupplot[title = {$\zeta = -0.4$}, xlabel = {$t [s]$}]
+            \addplot[domain = 0:5, samples = 200, very thick]{1 - exp(1.2*x)*(cos(2.7495*x) - 0.4364*sin(2.7495*x))};
+
+            \nextgroupplot[title = {$\zeta = -2$}, ylabel = \empty, xlabel = {$t [s]$}]
+            \addplot[domain = 0:5, samples = 200, very thick]{1 - exp(6*x)*(cosh(5.1961*x) - 1.1547*sinh(5.1961*x))};
+        \end{groupplot}
+    \end{tikzpicture}
+    \caption{Sistema de segundo orden con factores de amortiguamiento variables. Si $0< \zeta < 1$, entonces el sistema es \textbf{subamortiguado} y presentará algún sobrepaso o sobreenlongación. Si $\zeta > 1$, el sistema es \textbf{sobreamortiguado} y no presentará sobrepaso. Si $\zeta = 0$, entonces el sistema es oscilante y nunca se amortiguará. Si $\zeta < 0$, el sistema está en un equilibrio inestable y diverge (no tiene sentido hablar sobre factores de amortiguamiento negativos).}
+    \label{fig:2}
+\end{figure}
+
+
+Una forma de verificar más rápido sobre la estabilidad del sistema es usar la función \texttt{pole()} de MATLAB. En la Tabla \ref{tab:1} se observa que, cuando $\zeta > 0$, la parte real de los polos es negativa, lo cual significa que la estabilidad del sistema es positiva (no diverge). En cambio, cuando la parte real de los polos son positivos el sistema diverge.
+
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        Factor de amortiguamiento $\zeta$ & Polos del sistema\\
+        \hline
+        3 & $p_1 = -17.4853$, $p_2 = -0.5147$\\
+        \hline
+        0.6 & $p_{1,2} = -1.8 \pm 2.4i$\\
+        \hline
+        -0.4 & $p_{1,2} = 1.2 \pm 2.7495i$\\
+        \hline
+        -2 & $p_1 = 11.1962$, $p_2 = 0.8038$\\
+        \hline
+    \end{tabular}
+    \caption{Polos para cada configuración del sistema de segundo orden con frecuencia constante}
+    \label{tab:1}
+\end{table}
+
+\newpage
+
+Por último, definamos las siguientes funciones de transferencias:
+
+\begin{align}
+    &G_1(s) = \frac{2}{s^2 + 2s + 2} \qquad G_2(s) = \frac{10}{s^2 + 2s + 10}\\
+    &G_3(s) = \frac{18}{s^2 + 6s + 18} \qquad G_4(s) = \frac{s+ 18}{s^2 + 6s + 18}
+\end{align}
+
+
+\noindent De la Figura \ref{fig:3} se observa las respuestas del sistema y en la Figura \ref{fig:4} el mapa de los polos y ceros de cada uno de ellos. Como se puede ver, los sistemas $G_1$, $G_3$ y $G_4$ presentan el mismo sobrepaso, esto se debe a que los polos de los respectivos sistemas están sobre el mismo ángulo de $45^{\circ}$ (ver Figura 4).  Los tiempos picos son distintos debido a la frecuencia natural no amortiguada. El tiempo pico se define como:
+
+\begin{equation}
+    t_p = \frac{\pi}{\omega_n\sqrt{1 - \zeta^2}}
+\end{equation}
+
+
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}[spy using outlines=
+    {circle, magnification=4, connect spies}]
+        \begin{axis}[
+            trig format = rad,
+            xmin = 0, xmax = 7, ymin = 0,
+            legend entries = {$G_1$, $G_2$, $G_3$, $G_4$},
+            legend pos = south east,
+            grid = both,
+            xlabel = {$t[s]$},
+            ylabel = {$y(t)$},
+            ylabel style = {rotate = -0.46},
+            width = 0.8\textwidth
+        ]
+            \addplot[samples = 200, domain = 0:7, thick, red]{1-exp(-x)*(cos(x) + sin(x))};
+            \addplot[samples = 200, domain = 0:7, thick, blue]{1-exp(-x)*(cos(3*x) + sin(3*x)/3)};
+            \addplot[samples = 200, domain = 0:7, thick]{1-exp(-3*x)*(cos(3*x) + sin(3*x))};
+            \addplot[samples = 200, domain = 0:7, thick, cyan]{1-exp(-3*x)*(cos(3*x) + 2*sin(3*x)/3)};
+            \coordinate (spypoint) at (axis cs: 0.9, 1.01);
+            \coordinate (magnify) at (axis cs: 3, 0.5);
+            \node at (axis cs: 4, 0.8)[]{Efecto del cero en el $t_p$};
+        \end{axis}
+        \spy[black, size = 2.5cm] on (spypoint) in node[fill = white] at (magnify);
+    \end{tikzpicture}
+    \caption{Gráfica de las respuestas de las funciones transferencias.}
+    \label{fig:3}
+\end{figure}
+
+
+
+Tanto $G_1$, $G_3$ y $G_4$ están sobre la misma línea de $45^{\circ}$, entonces su amortiguamiento son $\zeta = 1/\sqrt{2}$, pero su frecuencia natural no son iguales, ya que $\omega_{n_1} = \sqrt{2}$ y $\omega_{n_{3, 4}} = 3\sqrt{2}$. Entonces, al calcular los tiempos picos de cada uno de ellos se obtiene:
+
+\begin{equation}
+    t_{p_1} = \pi \qquad t_{p_{3, 4}} = \frac{\pi}{3}
+\end{equation}
+
+\noindent Se observa que $G_4$ presenta un tiempo $t_{p_4}$ menor a $t_{p_3}$, y esto se debe a que presenta un cero en su sistema, acelerando la respuesta transitoria (ver Figura 3).
+
+Por último, $G_2$ presenta un sobrepaso más grande debido a que los polos se encuentran a un ángulo $\theta$ mayor, por lo tanto $\zeta$ es menor.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin = -4, xmax = 0,
+            ymin = -4, ymax = 4,
+            width = 0.8\textwidth,
+            axis lines = center,
+            clip = false,
+            enlargelimits = true,
+            xtick distance = 1,
+            ytick distance = 1,
+            xlabel = {$\sigma$},
+            ylabel = {$i\omega$},
+            ylabel style = {at = {(0.95, 1)}},
+        ]
+            \addplot[only marks, red, mark size = 4pt, mark = o, thick] coordinates {(-1, -1) (-1, 1)};
+            \addplot[only marks, blue, mark size =  4pt, mark = o, thick] coordinates {(-1, -3) (-1, 3)};
+            \addplot[only marks, mark size = 5pt, mark = halfcircle*, mark color = black, fill = cyan] coordinates {(-3, -3) (-3, 3)};
+            \draw[-{Latex[length = 0.2cm]}, cyan] (-3.3, 0.2) -- (-3.7, 0.2) node[midway, cyan, above]{$z = -18$};
+            \coordinate (o) at (0,0);
+            \coordinate (x) at (-4, 0);
+            \coordinate (p1) at ({5*cos(135)}, {5*sin(135)});
+            \coordinate (p2) at ({5*cos(225)}, {5*sin(225)});
+            
+            \draw (o) -- (p1);
+            \draw (o) -- (p2);
+            
+            % Marcado del ángulo nativo con 'angles' (p1 - o - x)
+            \pic [draw, angle radius=3cm, angle eccentricity=1.3, Latex-] {angle = p1--o--x};
+            \pic [draw, angle radius=3cm, angle eccentricity=1.3, -Latex] {angle = x--o--p2};
+
+            % Texto en (-1, 2) y línea curva sutil hacia el arco superior (bisectriz a 157.5°)
+            \node (note) at (-1, 2) [scale = 1.1] {$\cos^{-1} \zeta$};
+            \draw[thick, gray!60, -Latex] (-1.6, 1.1) to[out=70, in=190] (note);
+
+            \node at (-1.5, 0.8)[left, scale = 1.2]{$\theta$};
+            \node at (-1.5, -0.8)[left, scale = 1.2]{$\theta$};
+
+            \draw[dashed] (-3, 3) -- (-2, 4.1)node[above]{Polos conjugados de los sitemas $G_3$ y $G_4$};
+            \draw[dashed] (-3, -3) -- (-2, 4.1);
+
+            \draw[dashed] (-3.5, 0.6) -- (-4.2, 2)node[above]{Cero del sistema $G_4$};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Mapa de los polos y ceros de los sistemas.}
+    \label{fig:4}
+\end{figure}
+
+
+A continuación se presentan los códigos MATLAB utilizados en este trabajo práctico
+
+
+\begin{figure}[ht!]
+    \begin{lstlisting}[caption = {Entrada escalón a distintos sistemas de segundo orden con variación en sus polos, ceros y ganancias.}, label = {cod:2}]
+clear all;
+
+G1 = zpk([], [-1-i, -1+i], 2);
+G2 = zpk([], [-1-3i, -1+3i], 10);
+G3 = zpk([], [-3-3i, -3+3i], 18);
+G4 = zpk([-18], [-3-3i, -3+3i], 1);
+
+% figure;
+% hold on;
+% step(G1)
+% step(G2)
+% step(G3)
+% step(G4)
+
+%Verifico el tiempo de sobreenlongación
+stepinfo(G2)
+
+%%
+syms s t 
+
+Rs = 1/s;
+G1_sym = 2/(s^2 + 2*s + 2);
+G2_sym = 10/(s^2 + 2*s + 10);
+G3_sym = 18/(s^2 + 6*s + 18);
+G4_sym = (s+18)/(s^2 + 6*s + 18);
+
+ilaplace(G4_sym*Rs, s, t)
+    \end{lstlisting}
+\end{figure}
+
+\begin{figure}[ht!]
+    \begin{lstlisting}[caption = {Ciclo \texttt{for} utilizado para generar los subplots y verificación de la respuesta en el dominio del tiempo usando cálculo simbólico}, label = {cod:1}]
+% frecuencia natural no amortiguada
+w = 3
+% %factor de amortiguamiento relativo
+% z = 0.4
+%Nombre del archivo
+mdl = "Curso_Matlab\semana4\mod_08.slx";
+t_sim = '5'; %tiempo de ejecución
+% mod = sim(mdl, "StopTime", t_sim)
+for i = 1:4
+    switch i
+        case 1
+            z = 3;
+        case 2 
+            z = 0.6;
+        case 3
+            z = -0.4;
+        case 4 
+            z = -2;
+    end
+    %atenuación
+    o = z*w;
+    mod = sim(mdl, 'StopTime', t_sim)
+    %función transferencia
+    num = [w^2];
+    den = [1 2*o w^2];
+    G = tf(num, den);
+    display(G)
+    disp(['Polos del sistema', num2str(i)])
+    polos_G = pole(G)
+    % extraigo los datos del simulink
+    data = mod.yout.extractTimetable;
+    t = data.Data; x = data.Data_1; y = data.Data_2
+    subplot(2, 2, i)
+    plot(t, y)
+    title("z = " + z)
+end
+%%
+syms s t omega_n zeta
+w = 3;
+Gs(zeta, omega_n) = omega_n^2 / (s^2 + 2*zeta*omega_n*s + omega_n^2);
+Rs = 1/s; %entrada escalón
+
+ilaplace(Gs(-2, w)*Rs, s, t)
+    \end{lstlisting}
+\end{figure}
+
+
+

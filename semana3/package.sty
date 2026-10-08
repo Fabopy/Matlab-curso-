@@ -1,0 +1,136 @@
+\ProvidesPackage{package}
+\AtBeginDocument{\RenewCommandCopy\qty\SI} 
+\usepackage{import} %No olvidarme de esto para cargar las imágenes creadas en Inkscape
+\usepackage[a4paper, left = 3.5cm, right = 3.5cm, bottom = 2.5cm]{geometry}
+
+
+\usepackage{graphicx} 
+\usepackage[export]{adjustbox}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{hyperref} 
+
+\usepackage{amsmath}      
+\usepackage{amssymb}     
+\usepackage{mathtools}  
+\usepackage{mathrsfs}    
+\usepackage{amsthm}      
+\usepackage{amsfonts}
+%\usepackage{physics}    
+\usepackage{siunitx}
+
+\usepackage[spanish]{babel}
+\usepackage{subcaption}
+\usepackage{lipsum}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{silence}
+\usepackage{tabularx}
+\usepackage{pdfpages}
+
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat = 1.18}
+\usepackage{tikz, pgfplots}
+\usepackage{pict2e}
+\usepgfplotslibrary{polar}
+\pgfplotsset{compat=newest}
+\usepackage{tkz-euclide}  
+\usepgfplotslibrary{colorbrewer}
+\usepackage{listings}
+\usetikzlibrary{calc}
+\usetikzlibrary{angles,quotes,arrows.meta,3d, patterns}
+\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{units}
+\usetikzlibrary{3d}
+\usepackage{tikz-3dplot}
+\usepackage{nomencl}
+\usetikzlibrary{calc, angles, quotes}
+\usetikzlibrary {arrows.meta,bending,positioning} %para flechas
+\usetikzlibrary{topaths}
+\usetikzlibrary{external}
+\usetikzlibrary{fadings}
+\usepackage{xcolor}
+\definecolor{c949494}{RGB}{148,148,148} %Es importante esto porque sino da errores. Si uso colores en Inkscape debo espeficar todos los colores según RGB
+\usepackage{color}
+\usepackage{etoolbox}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 
+
+\usepackage[symbol]{footmisc} %basta con agregar esta paquetería para que se agregue los símbolos del footnote
+
+\setminted{breaklines=true}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[]{}
+\fancyhead[]{}
+\fancyhead[C]{\textsc{Curso Matlab-Simulink}}
+\fancyhead[L]{\thepage}
+
+
+
+
+%%%PARA CÓDIGO MATLAB
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{matlabstyle}{
+    language=Matlab,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen}\itshape,
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single,                   % Recuadro alrededor del código
+    rulecolor=\color{black!30}
+}
+
+\lstset{style=matlabstyle}
+\renewcommand{\lstlistingname}{Código}
+
+
+
+
+
+\newcommand{\T}[1]{\texttt{#1}}
+\renewcommand{\headrulewidth}{0pt}  
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+\renewcommand{\tablename}{\normalsize Tabla} %De esta forma puedo cambiar los nombres de las figuras, tablas, bibliografías, apéndices, etc
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+\captionsetup[figure]{labelfont = {bf},labelsep=period} %Con el paquete caption y este comando puedo cambiar el estilo de letra a la palabra 'Figura'
+
+
+\usepackage{titlesec}
+%Acá cambio la configuración de las secciones, subsecciones, etcétera
+\titleformat{\section}
+  {\centering\large\scshape\bfseries}
+  {\thesection.} %Esto le agrega un punto
+  {0.7em}
+  {}
+  [] 
+\titleformat{\subsection}
+  {\centering\normalsize\scshape\bfseries}
+  {\thesubsection.} %Esto le agrega un punto
+  {0.7em}
+  {}
+  [] 

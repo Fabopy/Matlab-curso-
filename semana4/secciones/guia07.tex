@@ -1,0 +1,183 @@
+La siguiente tabla representa la consigna, código MATLAB y salida para la guía 07.
+
+
+\small
+\begin{xltabular}{\textwidth}{>{\hsize=0.8\hsize}X >{\hsize=1.1\hsize}X >{\hsize=1.3\hsize}X >{\hsize=0.8\hsize}X}
+
+    % --- Encabezado de la primera página ---
+    \toprule
+    \textbf{Consigna} & \textbf{Código MATLAB} & \textbf{Salida} & \textbf{Dimensión} \\
+    \midrule
+    \endfirsthead
+
+    % --- Encabezado de las páginas siguientes ---
+    \toprule
+    \textbf{Consigna} & \textbf{Código MATLAB} & \textbf{Salida} & \textbf{Dimensión} \\
+    \midrule
+    \endhead
+
+    % --- Pie de página en cortes intermedios ---
+    \midrule
+    \multicolumn{4}{r}{\textit{Continúa en la siguiente página...}} \\
+    \endfoot
+
+    % --- Pie de página final ---
+    \bottomrule
+    \endlastfoot
+
+    % --- DEFINICIONES ---
+    $v_1$ (vector fila) & \texttt{v1 = [1 2 3];} & \texttt{1 2 3} & $1\times 3$ \\[0.2cm]
+    $v_2$ (vector columna) & \texttt{v2 = [4; 5; 6];} & \begin{tabular}[c]{@{}l@{}}\texttt{4}\\\texttt{5}\\\texttt{6}\end{tabular} & $3\times 1$ \\[0.4cm]
+    $M_1$ (matriz) & \texttt{M1 = [1 1 0; 3 0 7; 5 4 2];} & \begin{tabular}[c]{@{}l@{}}\texttt{1 1 0}\\\texttt{3 0 7}\\\texttt{5 4 2}\end{tabular} & $3\times 3$ \\[0.5cm]
+    $M_2$ (matriz) & \texttt{M2 = [0 2 3; -1 0 5; 0 -6 9];} & \begin{tabular}[c]{@{}l@{}}\texttt{0 2 3}\\\texttt{-1 0 5}\\\texttt{0 -6 9}\end{tabular} & $3\times 3$ \\[0.5cm]
+
+    \midrule
+    % --- OPERACIONES ALGEBRAICAS ---
+    $M_1 \cdot M_2$ & \texttt{M1*M2} & \begin{tabular}[c]{@{}l@{}}\texttt{-1~~2~~8}\\\texttt{~0 -36 72}\\\texttt{-4 -2 53}\end{tabular} & $3\times 3$ \\[0.5cm]
+    $M_1 \cdot v_2$ & \texttt{M1*v2} & \begin{tabular}[c]{@{}l@{}}\texttt{~9}\\\texttt{54}\\\texttt{52}\end{tabular} & $3\times 1$ \\[0.4cm]
+    $M_1 \cdot v_1$ & \texttt{M1*v1} & \texttt{Incorrect dimensions for matrix multiplication.} & $-$ \\[0.2cm]
+    $M_1 \cdot v_1^T$ & \texttt{M1*v1'} & \begin{tabular}[c]{@{}l@{}}\texttt{~3}\\\texttt{24}\\\texttt{19}\end{tabular} & $3\times 1$ \\[0.4cm]
+    $v_1 \cdot M_2$ & \texttt{v1*M2} & \texttt{-2 -16  40} & $1\times 3$ \\[0.2cm]
+    $v_1 \cdot v_2$ & \texttt{v1*v2} & \texttt{32} & $1\times 1$ \\[0.2cm]
+    $v_1 \cdot v_2^T$ & \texttt{v1*v2'} & \texttt{Incorrect dimensions for matrix multiplication.} & $-$ \\[0.2cm]
+    $v_1 \odot v_2^T$ & \texttt{v1.*v2'} & \texttt{4 10 18} & $1\times 3$ \\[0.2cm]
+    $M_1 \odot M_2$ & \texttt{M1.*M2} & \begin{tabular}[c]{@{}l@{}}\texttt{~0~~2~~0}\\\texttt{-3~~0 35}\\\texttt{~0 -24 18}\end{tabular} & $3\times 3$ \\[0.5cm]
+
+    \midrule
+    % --- INDEXACIÓN Y MODIFICACIÓN ---
+    Elemento $(2,3)$ de $M_1$ & \texttt{M1(2,3)} & \texttt{7} & $1\times 1$ \\[0.2cm]
+    Fila 3 de $M_1$ & \texttt{M1(3,:)} & \texttt{5 4 2} & $1\times 3$ \\[0.2cm]
+    Reemplazar ceros de $M_1$ por 9 & \texttt{M1(M1 == 0) = 9;} & \begin{tabular}[c]{@{}l@{}}\texttt{1 1 9}\\\texttt{3 9 7}\\\texttt{5 4 2}\end{tabular} & $3\times 3$ \\[0.5cm]
+    $M_2(:,2) \cdot v_1$ & \texttt{M2(:,2)*v1} & \begin{tabular}[c]{@{}l@{}}\texttt{~2~~~4~~~6}\\\texttt{~0~~~0~~~0}\\\texttt{-6 -12 -18}\end{tabular} & $3\times 3$ \\[0.5cm]
+    $M_2(1,:) \cdot v_2$ & \texttt{M2(1,:)*v2} & \texttt{28} & $1\times 1$ \\[0.2cm]
+
+    \midrule
+    % --- USO DE END ---
+    $v_1(\text{end})$ & \texttt{v1(end)} & \texttt{3} & $1\times 1$ \\[0.2cm]
+    $v_2(\text{end}-1)$ & \texttt{v2(end-1)} & \texttt{5} & $1\times 1$ \\[0.2cm]
+    $M_2(\text{end})$ & \texttt{M2(end)} & \texttt{9} & $1\times 1$ \\[0.2cm]
+    $M_1(:,\text{end})$ & \texttt{M1(:,end)} & \begin{tabular}[c]{@{}l@{}}\texttt{0}\\\texttt{7}\\\texttt{2}\end{tabular} & $3\times 1$ \\[0.4cm]
+    $M_1(:,\text{end}-1)$ & \texttt{M1(:,end-1)} & \begin{tabular}[c]{@{}l@{}}\texttt{1}\\\texttt{0}\\\texttt{4}\end{tabular} & $3\times 1$ \\[0.4cm]
+
+    \midrule
+    % --- BORRADO ---
+    Eliminar último elem. $v_1$ & \texttt{v1(end) = [];} & \texttt{1 2} & $1\times 2$ \\[0.2cm]
+    Eliminar columna 2 de $M_2$ & \texttt{M2(:,2) = [];} & \begin{tabular}[c]{@{}l@{}}\texttt{~0 3}\\\texttt{-1 5}\\\texttt{~0 9}\end{tabular} & $3\times 2$ \\[0.5cm]
+
+    \midrule
+    % --- OPERACIONES ESCALARES ---
+    $M_1 \cdot 6$ & \texttt{M1*6} & \begin{tabular}[c]{@{}l@{}}\texttt{~6~~6~~0}\\\texttt{18~~0 42}\\\texttt{30 24 12}\end{tabular} & $3\times 3$ \\[0.5cm]
+    $M_1 / 3$ & \texttt{M1/3} & \begin{tabular}[c]{@{}l@{}}\texttt{0.3333 0.3333 0.0000}\\\texttt{1.0000 0.0000 2.3333}\\\texttt{1.6667 1.3333 0.6667}\end{tabular} & $3\times 3$ \\[0.5cm]
+    $M_1 + 2$ & \texttt{M1+2} & \begin{tabular}[c]{@{}l@{}}\texttt{3 3 2}\\\texttt{5 2 9}\\\texttt{7 6 4}\end{tabular} & $3\times 3$ \\[0.5cm]
+
+    \midrule
+    % --- FUNCIONES AVANZADAS ---
+    Autovalores de $M_1$ & \texttt{eig(M1)} & \begin{tabular}[c]{@{}l@{}}\texttt{~6.3149}\\\texttt{-3.3496}\\\texttt{-0.0347}\end{tabular} & $3\times 1$ \\[0.5cm]
+    Autovectores y Autovalores & \texttt{[V,D] = eig(M1);} & \begin{tabular}[c]{@{}l@{}}\texttt{V (Matriz de autovectores)}\\\texttt{D (Matriz diagonal)}\end{tabular} & \begin{tabular}[c]{@{}l@{}}$V: 3\times 3$\\$D: 3\times 3$\end{tabular} \\[0.4cm]
+    Determinante de $M_1$ & \texttt{det(M1)} & \texttt{1} & $1\times 1$ \\[0.2cm]
+    Dimensiones de $M_1$ y $M_2$ & \texttt{size(M1), size(M2)} & \texttt{3 3} & $1\times 2$ \\[0.2cm]
+    Cant. de filas de $v_1$ & \texttt{size(v1,1)} & \texttt{1} & $1\times 1$ \\[0.2cm]
+    Cant. de columnas de $v_1$ & \texttt{size(v1,2)} & \texttt{3} & $1\times 1$ \\[0.2cm]
+    Longitud de $v_1$ & \texttt{length(v1)} & \texttt{3} & $1\times 1$ \\[0.2cm]
+    Longitud de $v_2$ & \texttt{length(v2)} & \texttt{3} & $1\times 1$ \\[0.2cm]
+    Máximo por columna ($M_1$) & \texttt{max(M1)} & \texttt{5 4 7} & $1\times 3$ \\[0.2cm]
+    Valor máximo global ($M_1$) & \texttt{max(M1(:))} & \texttt{7} & $1\times 1$ \\
+
+\end{xltabular}
+
+
+En el siguiente cuadro se muestra cómo trabajar con matrices y generar distintas formas matriciales:
+
+\small
+\begin{xltabular}{\textwidth}{>{\hsize=0.85\hsize}X >{\hsize=1.15\hsize}X >{\hsize=1.2\hsize}X >{\hsize=0.8\hsize}X}
+
+    % --- Encabezado de la primera página ---
+    \toprule
+    \textbf{Consigna} & \textbf{Código MATLAB} & \textbf{Salida} & \textbf{Dimensión} \\
+    \midrule
+    \endfirsthead
+
+    % --- Encabezado de las páginas siguientes ---
+    \toprule
+    \textbf{Consigna} & \textbf{Código MATLAB} & \textbf{Salida} & \textbf{Dimensión} \\
+    \midrule
+    \endhead
+
+    % --- Pie de página en cortes intermedios ---
+    \midrule
+    \multicolumn{4}{r}{\textit{Continúa en la siguiente página...}} \\
+    \endfoot
+
+    % --- Pie de página final ---
+    \bottomrule
+    \endlastfoot
+
+    % --- SISTEMA DE ECUACIONES LINEALES ---
+    Matriz de coeficientes $A$ & \texttt{A = [2 log(10) -1; 1 -5 -pi; sqrt(2) -1 7];} & \begin{tabular}[c]{@{}l@{}}\texttt{2.0000~~2.3026 -1.0000}\\\texttt{1.0000 -5.0000 -3.1416}\\\texttt{1.4142 -1.0000~~7.0000}\end{tabular} & $3\times 3$ \\[0.6cm]
+    Solución mediante $x = A^{-1}b$ & \texttt{x = inv(A)*[2; 4; 6]} & \begin{tabular}[c]{@{}l@{}}\texttt{~1.9333}\\\texttt{-0.6483}\\\texttt{~0.3739}\end{tabular} & $3\times 1$ \\[0.4cm]
+    Solución mediante operador $\backslash$ & \texttt{x = A\textbackslash[2; 4; 6]} & \begin{tabular}[c]{@{}l@{}}\texttt{~1.9333}\\\texttt{-0.6483}\\\texttt{~0.3739}\end{tabular} & $3\times 1$ \\[0.4cm]
+
+    \midrule
+    % --- MATRICES ESPECIALES ---
+    Matriz de ceros & \texttt{zeros(3,4)} & Matriz de ceros & $3\times 4$ \\[0.2cm]
+    Matriz de unos & \texttt{ones(7,4)} & Matriz de unos & $7\times 4$ \\[0.2cm]
+    Matriz identidad & \texttt{eye(3,3)} & Matriz identidad $I_3$ & $3\times 3$ \\[0.2cm]
+    Identidad abreviada & \texttt{eye(3)} & Matriz identidad $I_3$ & $3\times 3$ \\[0.2cm]
+    Vector columna de \texttt{NaN} & \texttt{nan(4,1)} & Vector de \texttt{NaN} & $4\times 1$ \\[0.2cm]
+    Vector fila de \texttt{NaN} & \texttt{nan(1,4)} & Vector de \texttt{NaN} & $1\times 4$ \\[0.2cm]
+    Cuadrado mágico $5\times 5$ & \texttt{M = magic(5)} & \begin{tabular}[c]{@{}l@{}}\texttt{17~~24~~~1~~~8~~15}\\\texttt{23~~~5~~~7~~14~~16}\\\texttt{~4~~~6~~13~~20~~22}\\\texttt{10~~12~~19~~21~~~3}\\\texttt{11~~18~~25~~~2~~~9}\end{tabular} & $5\times 5$ \\[0.7cm]
+    Suma de la 1.ª columna de $M$ & \texttt{sum(M(:,1))} & \texttt{65} & $1\times 1$ \\[0.2cm]
+    Suma de la 2.ª fila de $M$ & \texttt{sum(M(2,:))} & \texttt{65} & $1\times 1$ \\[0.2cm]
+
+    \midrule
+    % --- VARIABLES ALEATORIAS ---
+    Distribución uniforme $[0,1]$ & \texttt{rand(2,6)} & Valores aleatorios en $(0,1)$ & $2\times 6$ \\[0.2cm]
+    Escalar aleatorio $[0,1]$ & \texttt{rand} & Valor aleatorio en $(0,1)$ & $1\times 1$ \\[0.2cm]
+    Uniforme en rango $[10, 15]$ & \texttt{10 + 5*rand(2,6)} & Valores aleatorios en $(10,15)$ & $2\times 6$ \\[0.2cm]
+    Normal estándar ($\mu=0, \sigma^2=1$) & \texttt{randn(4,2)} & Valores aleatorios Gaussianos & $4\times 2$ \\[0.2cm]
+    Matriz normal $3\times 3$ & \texttt{randn(3)} & Valores aleatorios Gaussianos & $3\times 3$ \\
+
+\end{xltabular}
+
+
+
+
+Por último, generemos un vector de 5000 elementos según la distribución gaussiana y generemos un histograma.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar interval, % Grafica como barras contiguas tipo histograma
+            xlabel={Valores ($x$)},
+            ylabel={Frecuencia},
+            ymin=0,
+            % Formatea los números del eje X para mostrar el inicio y fin del intervalo
+            xticklabel={[\pgfmathprintnumber\tick, \pgfmathprintnumber\nexttick)},
+            xtick = \empty,
+            legend entries = {\texttt{histogram(randn(5000, 1), 100)}},
+            legend style = {at = {(0.5, 1.15)}, anchor = north}
+        ]
+            \addplot+[hist = {bins = 100}]table[y index = 0]{distri_gauss.txt};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Distribución Gaussiana discreta ($\mu = 0, \ \sigma^2 = 1$)}
+    \label{fig:}
+\end{figure}
+
+
+Notar que \texttt{magic()} genera un cuadrado mágico, esto es, cada fila y columna (incluido la diagonal principal) suman el mismo número.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+\documentclass[twoside]{article}
+\usepackage{package}
+\usepackage[T1]{fontenc}
+\usepackage{subfiles}
+% Silenciar la advertencia de versalita + negrita inexistente
+\WarningFilter{latex}{Some font shapes were not available}
+\WarningFilter{latex}{Font shape `T1/lmr/bx/sc'}
+
+% Silenciar la advertencia de caracteres perdidos en el nullfont (para 01_introduccion.tex)
+\WarningFilter{latex}{Missing character: There is no}
+%Nuevos comandos
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\raggedbottom
+
+
+
+\begin{document}
+\begin{center}
+    \thispagestyle{empty}
+    \large{\textsc{Matrices en MATLAB y Respuesta Transitoria}}\\[0.5cm] 
+    \large{Fabrizio Benavidez\footnote[1]{\texttt{fabrizio.benavidez@mi.unc.edu.ar}}}\\[0.5cm]
+
+    \large{\footnotemark[1]\textit{Facultad de Ciencias Exactas, Físicas y Naturales, Ingeniería Aeronáutica}}
+    \\[0.5cm]
+
+    \begin{minipage}{0.7\textwidth}
+    \hrule
+    \vspace{0.2cm}
+        \normalsize{\textsc{Resumen}. El presente trabajo aborda la implementación computacional de algoritmos numéricos y el análisis de sistemas de control dinámicos mediante MATLAB y Simulink. En una primera etapa, se desarrollan funciones iterativas utilizando bucles \texttt{for} y \texttt{while} para el cálculo de la sucesión de Fibonacci y la evaluación de límites numéricos en números primos. Posteriormente, se implementa el criterio de estabilidad de Routh-Hurwitz para la evaluación algebraica de polinomios característicos de cuarto orden. Finalmente, se estudia la respuesta en estado estacionario de un sistema de control retroalimentado sujeto a diferentes señales de entrada (escalón, rampa y parábola). Mediante la aplicación del Teorema del Valor Final y la variación de la función de transferencia de retroalimentación $H(s)$, se analiza el impacto del tipo de compensador sobre el error estacionario $e_{ss}$ y la ubicación de los polos en lazo cerrado para determinar la estabilidad del sistema.}\\[0.2cm]
+        \normalsize{\textit{Palabras claves}: MATLAB, Simulink, ciclos, estabilidad.\ }
+    \vspace{0.2cm}
+    \hrule
+    \end{minipage}
+    
+    \vfil
+
+    \includegraphics[width = 0.4\textwidth]{imagenes/Matlab_Logo.png}\\[0.5cm]
+
+    \vfil
+
+    \today\\[0.2cm]
+    \large{Semana 5}
+\end{center}
+
+
+
+
+
+\newpage
+
+\section*{Guía 09} 
+\subfile{secciones/guia09}
+
+\newpage
+
+\section*{Guía 10} 
+\subfile{secciones/guia10}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% \thispagestyle{empty}
+% \bibliography{biblioteca.bib}
+% \bibliographystyle{plain}
+
+
+\end{document}

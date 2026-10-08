@@ -1,0 +1,59 @@
+El siguiente código representa una función para calcular la raíz cuadrada de cualquier número:
+
+
+\begin{lstlisting}[caption = {}, label = {}]
+clear all;
+%{
+Funciones
+%}
+
+function raiz_t = raiz(t)
+    raiz_t = sqrt(t);
+end
+\end{lstlisting}
+
+
+
+Ahora veamos el siguiente sistema:
+
+\begin{equation}
+    G(s) = \frac{a}{bs^2 + cs + d} = \frac{k\omega^2}{s^2 + 2\zeta\omega s + \omega^2}
+\end{equation}
+
+
+\noindent El cual puede ser escrito como:
+
+
+\begin{equation}
+    G(s) = \frac{a/b}{s^2 + c/b s + d/b}
+\end{equation}
+
+
+\noindent Se aprecia que $\omega^2 = d/b$, $k = a/b\, \omega^2 $ y $\zeta = c / (2\omega)$. El siguiente código usa tres ejemplos:
+
+\begin{lstlisting}
+    
+function [k, w, z] = prototipo2(a, denom)
+    b = denom(1);
+    c = denom(2);
+    d = denom(3);
+    w = sqrt(d/b);
+    k = a/b*w^2;
+    z = c/(2*w);
+end
+
+%{
+Para G1: no tiene sobrepaso ya que z = 1 
+%}
+[k1, w1, z1] = prototipo2(16, [2, 4, 8]); 
+
+%{
+Para G2: no tiene sobrepaso ya que z = 2
+%}
+[k2, w2, z2] = prototipo2(18, [1, 12, 9]); 
+
+%{
+Para G3: no tiene sobrepaso ya que z = 1.6016
+%}
+[k3, w3, z3] = prototipo2(11, [1.7, 6.5, 7]); 
+\end{lstlisting}

@@ -1,0 +1,212 @@
+La sucesión de Fibonacci se define como:
+
+\begin{equation}
+    f_n = f_{n-1} + f_{n-2}
+\end{equation}
+
+
+\noindent donde $f_0 = 0$ y $f_1 = 1$. Por lo tanto, para el siguiente valor de $f$ es:
+
+\begin{equation*}
+    f_2 = 0 + 1 = 1
+\end{equation*}
+
+\noindent Para $f_3$
+
+\begin{equation*}
+    f_3 = f_2 + f_1 = 1 + 1 = 2
+\end{equation*}
+
+\noindent y así sucesivamente.
+
+El siguiente código de MATLAB representa la función de Fibonacci para cualquier $n$.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{lstlisting}[caption = {La función \texttt{fibonacci2} calcula el valor de la sucesión para un valor $n$}, label = {cod:1}]
+    function fn = fibonacci2(n)
+        a = 0; b = 1;
+        arr = 1:1:n;
+        for i = arr
+            fn = a + b;
+            temp = a;
+            a = fn ; b = temp;
+        end
+    end
+    \end{lstlisting}
+\end{figure}
+
+Si llamamos la función y le ponemos el valor de $n = 40$, el valor obtenido es $102334155$. Los siguientes códigos representan lo mismo pero usando bucles \texttt{while}.
+
+
+\begin{lstlisting}[caption = {La función \texttt{fibonacci} representa la función para calcular los primeros $n$ valores de la sucesión. \texttt{fibonacci\_10000} calcula el valor de la sucesión una vez que es mayor a 10000. Por último, \texttt{fibonacci\_v} le pasamos como argumento un valor $v$ donde calculará el último valor de la sucesión cuando $f_n > v$.}, label = {cod:2}]
+function fn = fibonacci(n)
+    a = 0 ; b = 1; %f_0 = 0,  f_1 = 1
+    m = n - 1; %le resto 1 ya que arranco con 2 valores de la sucesión
+    i = 0;
+    while i <= m
+        fn = a + b;
+        i = i + 1;
+        temp = a;
+        a = fn; b = temp;
+    end
+end
+
+
+function fn = fibonacci_10000()
+    a = 0 ; b = 1;
+    fn = a + b;
+    while fn < 10000
+        fn = a + b;
+        temp = a;
+        a = fn ; b = temp;
+    end
+end
+
+
+function fn = fibonacci_v(v)
+    a = 0; b = 1;
+    i = 1;
+    fn = 0;
+    while fn < v
+        fn = a + b;
+        i = i + 1;
+        temp = a;
+        a = fn ; b = temp;
+    end
+end
+\end{lstlisting}
+
+
+
+\begin{tcolorbox}[colframe = white!40!black, colback = black!10!white, sharp corners, breakable, title = Criterio de estabilidad de Routh-Hurwitz]
+
+El criterio de estabilidad de Routh-Hurwitz dice si existen o no raíces inestables en una ecuación polinomial, sin tener que obtenerlas en realidad. Este criterio de estabilidad sólo se aplica a los polinomios con una cantidad finita de términos. 
+
+El procedimiento en el criterio de estabilidad de Routh es el siguiente:
+
+\begin{enumerate}
+    \item Se escribe el denominador de la función transferencia de la forma siguiente:
+    
+    \begin{equation}
+        a_0s^n + a_1s^{n-1} + \cdots + a_{n-1}s + a_n = 0
+    \end{equation}
+
+    \noindent donde los coeficientes son cantidad reales. Se supone que $a_n \neq 0$; es decir, se elimina cualquier raíz cero.
+
+    \item Si todos los coeficientes son positivos, se ordenan los coeficientes del polinomio en filas y columnas con el patrón siguiente:
+    
+    \begin{align*}
+        s^n  &\qquad a_0 \quad a_2 \quad a_4 \quad a_6 \cdots \\
+        s^{n-1}  &\qquad a_1 \quad a_3 \quad a_5 \quad a_7 \cdots \\
+        s^{n-2}  &\qquad b_1 \quad b_2 \quad b_3 \quad b_4 \cdots \\
+        s^{n-3}  &\qquad c_1 \quad c_2 \quad c_3 \quad c_4 \cdots \\
+        \cdot &\qquad \cdot\\
+        \cdot &\qquad \cdot\\
+        \cdot &\qquad \cdot\\
+        s^2  &\qquad e_1 \quad e_2 \\
+        s^1  &\qquad f_1\\
+        s^0  &\qquad g_1\\
+    \end{align*}
+
+    \noindent El proceso de armar los valores de $b$, $c \cdots$, $e$, $f$ y $g$ se realiza mediante un proceso parecido a tomar el determinante de una matriz $2\times2$. 
+\end{enumerate}
+
+
+El criterio asegura que si existe algún cambio de signo en la primera columna de los coeficientes, entonces el sistema es inestable (tiene una raíz en el semiplano derecho).
+
+\end{tcolorbox}
+
+El siguiente ejemplo muestra cómo aplicar el criterio para un sistema de 4to orden:
+
+\begin{equation}
+    y^{(4)} + 2\dddot{y} + 4\ddot{y} + \dot{y} + 1 = r(t)
+\end{equation}
+
+La matriz $H$ es el arreglo de coeficientes definido anteriormente:
+
+\begin{equation*}
+    H =
+    \begin{bmatrix}
+        1 & 4 & 1 \\
+        2 & 1 & 0 \\
+        \alpha_1 & \alpha_2 & 0 \\
+        \beta_1 & 0 & 0 \\
+        \gamma_1 & 0 & 0 \\
+    \end{bmatrix}
+\end{equation*}
+
+\noindent donde 
+
+\begin{equation*}
+    \alpha_1 = 3.5, \qquad \alpha_2 = 1, \qquad \beta_1 = 0.4286, \qquad \beta_2 = 0, \qquad \gamma_1 = 3.5
+\end{equation*}
+
+
+El siguiente código representa la función que evalúa si el sistema es o no estable:
+
+
+\begin{lstlisting}[caption = {Criterio de Routh aplicado al sistema de 4to orden}, label = {cod:3}]
+function estable(M)
+    first_row = M(1);
+    for i = 1:length(first_row)
+        if i < 0
+            disp('Sistema no estable!')
+            break
+        end
+    disp('Sistema estable!')
+    end
+end
+
+function RH_4(y)
+    len = length(y);
+    H = zeros(len, 3);
+    a4 = y(1); a3 = y(2); a2 = y(3); a1 = y(4); a0 = y(5);
+    alpha1 = ((a3*a2) - (a4*a1))/a3;
+    alpha2 = ((a3*a0) - (a4*0))/a3;
+    beta1 = ((alpha1*a1)-(a3*alpha2))/alpha1;
+    gamma1 = ((beta1*alpha1)-(0*alpha1))/beta1;
+
+    H(1, [1:3]) = [a4, a2, a0];
+    H(2, [1:2]) = [a3, a1];
+    H(3, [1:2]) = [alpha1, alpha2];
+    H(4, 1) = beta1;
+    H(5, 1) = gamma1;
+    
+    estable(H);
+    H
+end
+
+coef1 = [1, 2, 4, 1, 1];
+% coef2 = [3, 2, 2, 0, -1];
+RH_4(coef1)
+
+\end{lstlisting}
+
+
+
+Por último, veamos el siguiente problema. Si $p$ es un número primo se puede obtener un nuevo número primo $q$ de la siguiente manera:
+
+\begin{equation}
+    q = 2\cdot3\cdot5\cdot7\cdots p + 1 
+\end{equation}
+
+
+El siguiente código implementa un bucle para buscar el último número primo que puede manejar MATLAB, el cual es: $2.811\times10^{307}$.
+
+\begin{lstlisting}[caption = {}, label = {}]
+for i = 300:900
+    q = prod(primes(i)) + 1;
+    if ~isfinite(q)
+            q = prod(primes(i - 1) + 1);
+            break
+    end
+end
+\end{lstlisting}
+
+
+
+
+
+
+
