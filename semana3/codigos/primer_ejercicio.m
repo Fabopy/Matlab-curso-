@@ -1,0 +1,45 @@
+%%% Parámetros de la función transferencia
+c = -1+i; %Tiene que ser negativo para asegurar la negatividad de los polos. Si pongo polos complejos
+%conjugados hay sobrepaso
+d = -1-i;
+b = (c+d)/2;
+a = -c*d/b;
+
+%%% Extraigo la información del simulink
+var = sim('Curso_Matlab\semana3\ceros_polos1.slx'); %Si saco el factor 1/s el sistema se estabiliza
+data = var.yout.extractTimetable;
+t = data.Data; escalon = data.Data_1 ; salida = data.Data_2;
+figure();
+plot(t, salida, 'r');
+hold on;
+plot(t, escalon, 'b');
+
+%%
+
+%%% Corroboramos porqué es una función lineal
+syms s
+Gs = a*(s-b)/((s-c)*(s-d));
+Hs = 1/s; %entrada escalón unitaria
+gt = ilaplace(Gs*Hs);
+
+%%
+
+%%% Cálculo del sobrepaso
+yFinal = -a*b/(c*d);
+yEnd = salida(end);
+display(yEnd)
+display(yFinal)
+
+maxY = max(salida); %para el sobrepaso
+fprintf('El máximo es: %f\n', maxY);
+sobrepaso = 100*abs(maxY - yFinal) / yFinal;
+fprintf('El sobrepaso en porcentaje es: %.3f \n', sobrepaso);
+
+%%
+
+%%% Función zpk y Overshoot
+ceros = [b];
+polos = [c d];
+ganancia = a;
+G = zpk(ceros, polos, ganancia);
+infoG = stepinfo(G);
