@@ -1,0 +1,75 @@
+\documentclass[twoside]{article}
+\usepackage{package}
+\usepackage[T1]{fontenc}
+\usepackage{subfiles}
+% Silenciar la advertencia de versalita + negrita inexistente
+\WarningFilter{latex}{Some font shapes were not available}
+\WarningFilter{latex}{Font shape `T1/lmr/bx/sc'}
+
+% Silenciar la advertencia de caracteres perdidos en el nullfont (para 01_introduccion.tex)
+\WarningFilter{latex}{Missing character: There is no}
+%Nuevos comandos
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\raggedbottom
+
+
+
+\begin{document}
+\begin{center}
+    \thispagestyle{empty}
+    \large{\textsc{Personalizar Matlab y Sistemas Lineales invariantes en el Tiempo}}\\[0.5cm] 
+    \large{Fabrizio Benavidez\footnote[1]{\texttt{fabrizio.benavidez@mi.unc.edu.ar}}}\\[0.5cm]
+
+    \large{\footnotemark[1]\textit{Facultad de Ciencias Exactas, Físicas y Naturales, Ingeniería Aeronáutica}}
+    \\[0.5cm]
+
+    \begin{minipage}{0.7\textwidth}
+    \hrule
+    \vspace{0.2cm}
+        \normalsize{\textsc{Resumen}En el siguiente trabajo se conoce con más profundidad la interfaz de MATLAB y algunas facilidades. Además, se trabaja con sistemas lineales: ceros, polos y ganancia, así como su representación en un espacio de estados. Se analiza distintas funciones de transferencias y sus diagramas de Bode, Nyquist y gráficas de respuestas entradas e impulsos.}\\[0.2cm]
+        \normalsize{\textit{Palabras claves}: sistemas, MATLAB, funciones, Bode, Nyquist\ }
+    \vspace{0.2cm}
+    \hrule
+    \end{minipage}
+    
+    \vfil
+
+    \includegraphics[width = 0.4\textwidth]{imagenes/Matlab_Logo.png}\\[0.5cm]
+
+    \vfil
+
+    \today\\[0.2cm]
+    \large{Semana 8}
+\end{center}
+
+
+
+
+
+
+
+\newpage
+
+\section*{Guía 16: Sistemas Lineales invariantes en el Tiempo} 
+\subfile{secciones/guia16}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% \thispagestyle{empty}
+% \bibliography{biblioteca.bib}
+% \bibliographystyle{plain}
+
+
+\end{document}

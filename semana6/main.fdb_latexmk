@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1791142923.23558 "main.tex" "main.pdf" "main" 1791142927.46561 2
-  "C:/Users/fabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1790949867 161609 ed5f950be6671ee0fff6dd76bd8a8f6e ""
+["pdflatex"] 1790642325.71991 "main.tex" "main.pdf" "main" 1790642330.38629 2
+  "C:/Users/fabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1790526302 161609 ed5f950be6671ee0fff6dd76bd8a8f6e ""
   "C:/Users/fabri/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1784140135 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/fabri/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1784140136 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/fabri/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs7.tfm" 1784153903 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
@@ -55,7 +55,6 @@
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/rm-lmr8.tfm" 1256929440 11864 309fd7f43e4a0ba39f6f7644d76e8edf ""
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/rm-lmr9.tfm" 1256929440 11884 c93929a6974dce79eabb778f219d7e18 ""
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ts1-lmtt9.tfm" 1256929440 1316 d775b6cda2829f488db82ccf17bc2b57 ""
-  "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ts1-lmtti10.tfm" 1256929440 1324 2cef7dd1bb674a2321482d0f0809240e ""
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb" 1256929440 121021 836464b5fe0c782d94085eb083550ccc ""
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb" 1256929440 116908 9a7a12d1e4df280ea0ab4aad83cdef88 ""
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb" 1256929440 116427 4909e80035dae5d5a4ec2b5ddd9649dd ""
@@ -412,14 +411,12 @@
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/tex/latex/xltabular/xltabular.sty" 1741086805 4020 2a8868abba10077001a8d63ade8a516c ""
   "C:/Users/fabri/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
   "imagenes/Matlab_Logo.png" 1786404516 663869 5fa1fbb3642454a99bd35bbff36cf96d ""
-  "imagenes/lugar_de_raices.pdf" 1791140539 22225 a801fa7b6177faf4d11fa463a19beb40 ""
-  "imagenes/lugar_de_raices2.pdf" 1791140862 22487 2d715948bc27081f652723fd03debee3 ""
-  "main.aux" 1791142926 2126 e179a9a6d5163e205b339d9eeab3ae97 "pdflatex"
-  "main.out" 1791142925 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1791142920 2059 95a070c02b352585fcdf2b317921e47c ""
+  "main.aux" 1790642329 1227 f630e822b56e10027b97fb3f34022929 "pdflatex"
+  "main.out" 1790642328 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1790639194 1603 9109f23512651289e2e29911ac4fe9f9 ""
   "package.sty" 1789226021 4304 081bc2eed931fcdd04e975abc3dd81e0 ""
-  "secciones/guia11.tex" 1791141144 7721 f8ed1d6fdc04ea2dbd66e569b4e9ea38 ""
-  "secciones/guia12.tex" 1791142179 1190 4fcd5411573687a10fb0f1c3259ee22c ""
+  "secciones/guia11.tex" 1790642308 4614 31d62b87b79a63d47966eb4e7311a8b3 ""
+  "secciones/guia12.tex" 1790638759 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "main.aux"
   "main.log"
