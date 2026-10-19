@@ -1,0 +1,88 @@
+\documentclass[twoside]{article}
+\usepackage{package}
+\usepackage[T1]{fontenc}
+\usepackage{subfiles}
+% Silenciar la advertencia de versalita + negrita inexistente
+\WarningFilter{latex}{Some font shapes were not available}
+\WarningFilter{latex}{Font shape `T1/lmr/bx/sc'}
+
+% Silenciar la advertencia de caracteres perdidos en el nullfont (para 01_introduccion.tex)
+\WarningFilter{latex}{Missing character: There is no}
+%Nuevos comandos
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\raggedbottom
+
+
+
+\begin{document}
+\begin{center}
+    \thispagestyle{empty}
+    \large{\textsc{Procesamiento de Datos y Modelos Avanzados en Simulink}}\\[0.5cm] 
+    \large{Fabrizio Benavidez\footnote[1]{\texttt{fabrizio.benavidez@mi.unc.edu.ar}}}\\[0.5cm]
+
+     \href{https://github.com/Fabopy/Matlab-curso-}{%
+        {\Large\faGithub}\quad
+        \nolinkurl{https://github.com/Fabopy/Matlab-curso-}%
+    }\\[0.5cm]
+
+    \large{\footnotemark[1]\textit{Facultad de Ciencias Exactas, Físicas y Naturales, Ingeniería Aeronáutica}}
+    \\[0.5cm]
+
+    \begin{minipage}{0.7\textwidth}
+    \hrule
+    \vspace{0.2cm}
+        \normalsize{\textsc{Resumen} El siguiente trabajo consiste en el análisis de datos e imágenes con MATLAB. En el mismo se presenta el análisis de datos de un hoja de cálculo (Excel), así como el de una figura jpg. 
+        
+        Además, también se analiza otros modelos de Simulink un poco más avanzados. Se ven los bloques \textit{From Workspace}, \textit{LTI System} y \textit{Fcn}}\\[0.2cm]
+        \normalsize{\textit{Palabras claves}: Datos, imágenes, MATLAB, Simulink, bloques \ }
+    \vspace{0.2cm}
+    \hrule
+    \end{minipage}
+    
+    \vfil
+
+    \includegraphics[width = 0.4\textwidth]{imagenes/Matlab_Logo.png}\\[0.5cm]
+
+    \vfil
+
+    \today\\[0.2cm]
+    \large{Semana 9}
+\end{center}
+
+
+
+
+
+
+
+\newpage
+
+\section*{Guía 17: Adquisición y procesamiento de datos} 
+\subfile{secciones/guia17}
+
+
+\newpage
+
+\section*{Guía 18: Modelos avanzados de Simulink} 
+\subfile{secciones/guia18}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% \thispagestyle{empty}
+% \bibliography{biblioteca.bib}
+% \bibliographystyle{plain}
+
+
+\end{document}
