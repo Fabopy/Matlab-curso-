@@ -1,0 +1,79 @@
+clc
+clear
+close all
+
+
+function estable(num, den)
+    G = tf(num, den);
+    polos = pole(G);
+    parte_real = real(polos);
+    if any(parte_real >= 0)
+        disp('El sistema es inestable o críticamente estable')
+    else    
+        disp('El sistema es estable')
+    end
+end
+
+%Para G1
+G1 = tf([34], [1, 11, 44, 34]);
+% estable([34], [1, 11, 44, 34])
+
+%Para G2
+G2 = tf([1, 2, 1, 1], [1, 1, 0, 8, 1]);
+% estable([1, 2, 1, 1], [1, 1, 0, 8, 1])
+
+%Para G3
+G3 = tf([1], [1, 15, 100, 250, 0]);
+% estable([1], [1, 15, 100, 250, 0])
+
+K = [204, 23, 0.01, 0.8, 5.5];
+F = [G1, G2, G3];
+
+j = 0;
+for f = F
+    j = j + 1;
+    fprintf('G%g\n', j)
+    for k = K
+        fprintf('--------------------\n')
+        fprintf('k = %g\n', k)
+        sis = feedback(f, k);
+        polos_sis = pole(sis);
+        real_sis = real(polos_sis);
+        fprintf('Polos %g\n', real_sis)
+        if any(real_sis >= 0)
+            continue;
+        else
+            fprintf('k = %g es ideal para G%g\n', k, j)
+        end
+    end
+end
+
+%%
+
+%El problema sugiere un compensador en serie con realimentación unitaria
+%{
+Según Ogata, la adición de ceros al sistema hace que el
+lugar de raíces se desplace a la izquierda, siendo
+más estable el sistema. En cambio, la adición de polos
+lo hace más inestable (tiende el lugar de raíces
+a la derecha)
+%}
+Gs = zpk([], [0, -2], 4);
+sist = feedback(Gs, 1);
+fig = figure;
+theme(fig, 'light');
+% subplot(1,2,1)
+% stepplot(sist, 'r')
+% subplot(1,2,2)
+% rlocus(sist)
+% hold on
+% rlocus(Gs)
+
+%Compensador calculado siguiendo la bibliografía del Ogata
+Hs = zpk([-2.9282], [-5.4641], 4.732);
+Gs_compensado = feedback(Hs*Gs, 1)
+stepplot(sist, 'r')
+hold on
+stepplot(HsGs, 'r--')
+legend('Sin compensador', 'Con compensador')
+rlocus(HsGs)

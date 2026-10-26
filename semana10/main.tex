@@ -1,0 +1,88 @@
+\documentclass[twoside]{article}
+\usepackage{package}
+\usepackage[T1]{fontenc}
+\usepackage{subfiles}
+% Silenciar la advertencia de versalita + negrita inexistente
+\WarningFilter{latex}{Some font shapes were not available}
+\WarningFilter{latex}{Font shape `T1/lmr/bx/sc'}
+
+% Silenciar la advertencia de caracteres perdidos en el nullfont (para 01_introduccion.tex)
+\WarningFilter{latex}{Missing character: There is no}
+%Nuevos comandos
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\raggedbottom
+
+
+
+\begin{document}
+\begin{center}
+    \thispagestyle{empty}
+    \large{\textsc{Introducción al Aprendizaje Automático y Compensadores Lineales}}\\[0.5cm] 
+    \large{Fabrizio Benavidez\footnote[1]{\texttt{fabrizio.benavidez@mi.unc.edu.ar}}}\\[0.5cm]
+
+     \href{https://github.com/Fabopy/Matlab-curso-}{%
+        {\Large\faGithub}\quad
+        \nolinkurl{https://github.com/Fabopy/Matlab-curso-}%
+    }\\[0.5cm]
+
+    \large{\footnotemark[1]\textit{Facultad de Ciencias Exactas, Físicas y Naturales, Ingeniería Aeronáutica}}
+    \\[0.5cm]
+
+    \begin{minipage}{0.7\textwidth}
+    \hrule
+    \vspace{0.2cm}
+        \normalsize{\textsc{Resumen} El siguiente trabajo consiste en una introducción al \textit{Machine Learning}, empleando regresión lineal y redes neuronales. Además se emplean herramientas en MATLAB para la regresión a distintos sistemas.
+        
+        También se emplean compensadores lineales para una respuesta deseada en un sistema.}\\[0.2cm]
+        \normalsize{\textit{Palabras claves}: MATLAB, Compensadores, Aprendizaje, regresión, lineales\ }
+    \vspace{0.2cm}
+    \hrule
+    \end{minipage}
+    
+    \vfil
+
+    \includegraphics[width = 0.4\textwidth]{imagenes/Matlab_Logo.png}\\[0.5cm]
+
+    \vfil
+
+    \today\\[0.2cm]
+    \large{Semana 10}
+\end{center}
+
+
+
+
+
+
+
+\newpage
+
+\section*{Guía 19: Introducción al Aprendizaje Automático}
+\subfile{secciones/guia19}
+
+
+\newpage
+
+\section*{Guía 20: Compensadores Lineales} 
+\subfile{secciones/guia20}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% \thispagestyle{empty}
+% \bibliography{biblioteca.bib}
+% \bibliographystyle{plain}
+
+
+\end{document}
