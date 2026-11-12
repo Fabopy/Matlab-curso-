@@ -1,0 +1,92 @@
+El siguiente código de MATLAB representa un generador de números aleatorios donde ninguno de ellos se repite:
+
+\begin{lstlisting}
+clear all
+close all
+clc
+
+a = randi([1, 15], 1, 15);
+S = [];
+
+while true
+    for i = a
+        if ismember(i, S)
+            n = length(S);
+            a = randi([1, 15], 1, 15 - n);
+            break;
+        end
+        S = [S, i];
+    end
+    m = length(S);
+    if m == 15
+        break;
+    end
+end
+
+S 
+>> 15 12 10 8 4 5 9 7 3 13 14 1 2 11 6
+\end{lstlisting}
+
+
+Básicamente lo que se hizo es crear un arreglo de números aleatorios, es decir, la variable \texttt{a}. Fue necesario crear otra variable, \texttt{S}, donde guardaremos todos los números aleatorios que no se repiten. Al ponerlo dentro de un bucle \textsl{while} éste proceso se repetirá hasta que \texttt{S} no tenga ningun elemento repetido. \texttt{ismember} es una función que nos dice si dicho elemento está en \texttt{S} o no. En el caso que esté, se creará un nuevo arreglo pero en lugar de 15 será un arreglo de 15 - \texttt{n}, donde \texttt{n} es el tamaño de \texttt{S}. Cabe aclarar que este código se hizo sin ayuda de IA. 
+
+Existe una función interna de MATLAB que hace lo mismo y es \texttt{randperm}:
+
+\begin{lstlisting}
+r = randperm(15)
+>> 4 10 5 14 13 9 15 2 6 8 12 11 7 1 3
+\end{lstlisting}
+
+
+En el anterior código se escribió lo siguiente:
+
+\begin{lstlisting}
+S = [];
+.
+.
+.
+S = [S, i];
+\end{lstlisting}
+
+
+La variable \texttt{S} no está definida en tamaño, por lo tanto su tamaño irá cambiando a medida que le agreguemos elementos. MATLAB advierte lo siguiente:
+
+\begin{quote}
+    Variable appears to change size on very loop iteration. Consider preallocating for speed.
+\end{quote}
+
+Básicamente hay que definir desde un principio el tamaño del arreglo. Veamos los siguientes 2 ejemplos
+
+\begin{lstlisting}
+tic
+v = [];
+i = 1;
+while i<sqrt(7777777)
+ v = [ v i^2 ];
+ i = i + 1;
+end
+toc
+>> Elapsed time is 0.008991 seconds.
+
+
+tic
+n = floor(sqrt(7777777));
+v = nan(1, n);
+i = 1;
+while i<sqrt(7777777)
+ v(i) = i^2;
+ i = i + 1;
+end
+toc
+>> Elapsed time is 0.005196 seconds.
+
+\end{lstlisting}
+
+
+En el primer caso definimos un arreglo vacío y en el segundo predefinimos el tamaño que tendrá la lista. Se observa que el segundo ejemplo fue 57.79\% más rápido que el primer ejemplo. Por lo tanto, definir el tamaño del arreglo resulta una ventaja en el tiempo de compilación.
+
+
+
+
+
+
